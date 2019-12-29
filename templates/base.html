@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta name=”viewport” content=”width=device-width, initial-scale=1″>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wilson Monitoring App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='customized.min.css') }}" />
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='balloon.min.css') }}">
+    <script async src="{{url_for('static',filename='fontawesome.min.js')}}"></script>
+    <script async src="{{url_for('static',filename='jquery_3_4_1.min.js')}}"></script>
+    <script async src="{{url_for('static',filename='moment_2_24_0.min.js')}}"></script>
+    <script async src="{{url_for('static', filename='functions.js')}}"></script>
+</head>
+
+<body>
+    <section class="hero is-primary is-fullheight">
+
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+
+                        <div class="navbar-end">
+                            <a href="{{ url_for('main.overall_status') }}" class="navbar-item">
+                                Home
+                            </a>
+
+
+                            {% if current_user.is_authenticated %}
+                            <!-- <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                                    Profile
+                                </a>-->
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                                Login
+                            </a>
+
+                            {% endif %}
+
+                            {% if current_user.is_authenticated %}
+
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                Logout
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                {% block content %}
+                {% endblock %}
+                {% block body %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<form action="{{ url_for('main.overall_status') }}">
+    <div class="buttonRefresh"><button class="buttonStyle">Refresh</button> </div>
+    <br>
+    <div class="houses">
+
+        {% if overallStatusFinal %}
+        {% for row in overallStatusFinal %}
+
+        <div class="eachHouse">
+            <div class="houseHeader">
+                <h3><i class="fas fa-home"></i> <span class="locationId"> {{ row.location_id }} </span> </h3>
+            </div>
+
+            <p>
+                <span aria-label="Sd Card Usage" data-balloon-pos="left">
+                    <i class="fas fa-sd-card iconSizes"></i>
+                </span>
+
+                <em hidden>Sd Card Usage:</em>
+                <span class="sdCard">{{ row.SdCardUsage }}</span> <span>%</span>
+            </p>
+
+            <p>
+                <span aria-label="Battery Level" data-balloon-pos="left">
+                    <i class="fas fa-car-battery iconSizes"></i>
+                </span>
+                <em hidden>Min Battery:</em>
+                <span class="battery">{{ row.MinBattery }}</span> <span>%</span>
+            </p>
+
+            <p>
+                <span aria-label="Last processed event time" data-balloon-pos="left">
+                    <i class="fas fa-history iconSizesSmall"> Zproc</i>
+                </span>
+                <em hidden>Event Time (Zproc):</em>
+                <span class="eventZproc">{{ row.LastZprocEvent }}</span>
+            </p>
+
+            <p>
+                <span aria-label="Last processed event" data-balloon-pos="left">
+                    <span class="eventXminAgo"></span>
+                    <i class="fas fa-stopwatch iconSizesStopWatch"> {{ row.XminAgo }} minutes ago</i>
+                </span>
+                <em hidden>X min ago:</em>
+
+            </p>
+
+            <p>
+                <span aria-label="System Status" data-balloon-pos="left">
+                    <i class="fas fa-heartbeat iconSizesBig"></i> <span hidden>%</span>
+                </span>
+                <em hidden>System Status:</em>
+                <span class="systemStat">{{ row.value }}</span>
+            </p>
+
+            <p>
+                <span aria-label="Device Connectivity" data-balloon-pos="left">
+                    <i class="fas fa-plug iconSizes"></i>
+                </span>
+                <em hidden>Device Connectivity:</em>
+                <span class="deviceCon">{{ row.DeviceConnectivity }}</span>
+            </p>
+
+        </div>
+
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</form>
+<form id="houseForm" action="{{ url_for('main.house_status') }}" method="POST">
+
+
+</form>
+
+<script type="text/javascript">
+    rowLength = {{ overallStatusFinal | length }};
+    addButtonToTable(rowLength);
+    logicOverallStatus(rowLength);
+
+</script>
+
+
+
+{% endblock %}

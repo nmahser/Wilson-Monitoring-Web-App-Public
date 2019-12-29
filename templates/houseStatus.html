@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<span id="houseId">House: {{ locationId }}</span>
+
+<input id="searchBar" onkeyup="search()" type="text" placeholder="Search..."/>
+
+<table id="HouseStatusTable" style="width:100%">
+    {% if locationTable %}
+    
+    <tr>
+        <th>Sensor Id</th>
+        <th>Dev Id</th>
+        <th>Model</th>
+        <th>Install Room</th>
+        <th>Alias</th>
+       <!-- <th>Current Status</th>-->
+        <th>Value</th>
+        <th>Event Time (Zproc)</th>
+       <!-- <th>Event Time</th>-->
+    </tr>
+    {% for row in locationTable %}
+    <tr>
+        <td> {{ row.id }}</td>
+        <td> {{ row.devid }}</td>
+        <td> {{ row.model }}</td>
+        <td> {{ row.install_room }}</td> 
+        <td> {{ row.alias }}</td>      
+       <!-- <td> {{ row.current_status }}</td>-->
+        <td> {{ row.value }}</td>
+        <td> {{ row.last_processed_event_time }}</td>
+       <!-- <td> {{ row.event_time }}</td>-->
+
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+
+<script type="text/javascript">
+logicHouseStatus();
+
+logicSensorHealth();
+</script>
+
+{% endblock %}
+
+
