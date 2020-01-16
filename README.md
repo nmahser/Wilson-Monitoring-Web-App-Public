@@ -1,7 +1,7 @@
 # Wilson-Monitoring-Web-Application
 Web app to monitor overall system health for each house. Provides information about sd card usage, system status, battery level, device connectivity and last process event time for each sensor. 
 
-![blurredWilsonMonitor](https://user-images.githubusercontent.com/20258893/71552428-4622b100-29cb-11ea-986f-52800f689660.gif)
+![wilsonMonitor](https://user-images.githubusercontent.com/20258893/72489921-a5fac380-37e3-11ea-9316-ddeb1cb290d8.gif)
 
 ## Installation / Preparation
 `git clone https://github.com/CreateHealth/Wilson-Monitoring-Web-Application.git` <br>
